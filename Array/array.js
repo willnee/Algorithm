@@ -50,7 +50,7 @@ function countTotalOfArray(arr) {
 
 //===============================
 const arr = [1, 2, 3, 4, 5];
-console.log("Input Exam: [1,2,3,4,5]");
+console.log("Input Exam: ", arr);
 console.log("Output");
 console.log("Max Min Sum:", maxMinSum(arr));
 console.log("Total Of Array:", countTotalOfArray(arr));
