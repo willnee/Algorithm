@@ -57,14 +57,11 @@ process.stdin.setEncoding("utf8");
 process.stdin.on("readable", function () {
   let inputValue = input();
   const arr = inputValue.split(" ").map((item) => parseInt(item));
-  arr.forEach((item) => {
-    if (item <= 0) {
-      console.log("Ban can nhap vao so nguyen duong");
-      input();
-    }
-  });
-  if (arr.length != 5) {
-    console.log("Ban can nhap vao 5 so nguyen duong");
+  if (arr.some((value) => value <= 0)) {
+    console.log("Khong duoc nhap vao so am va so 0");
+    input();
+  } else if (arr.length != 5) {
+    console.log("Khong du 5 so");
     input();
   } else {
     console.log("Input Exam: ", arr);
