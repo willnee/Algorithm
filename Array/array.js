@@ -49,12 +49,32 @@ function countTotalOfArray(arr) {
 }
 
 //===============================
-const arr = [1, 2, 3, 4, 5];
-console.log("Input Exam: ", arr);
-console.log("Output");
-console.log("Max Min Sum:", maxMinSum(arr));
-console.log("Total Of Array:", countTotalOfArray(arr));
-console.log("Max element:", findMinAndMaxInArray(arr).max);
-console.log("Min element:", findMinAndMaxInArray(arr).min);
-console.log("Even element:", findEvenInArray(arr));
-console.log("Odd element:", findOddInArray(arr));
+function input() {
+  return process.stdin.read();
+}
+console.log("Moi ban nhap vao 5 so nguyen duong:");
+process.stdin.setEncoding("utf8");
+process.stdin.on("readable", function () {
+  let inputValue = input();
+  const arr = inputValue.split(" ").map((item) => parseInt(item));
+  arr.forEach((item) => {
+    if (item <= 0) {
+      console.log("Ban can nhap vao so nguyen duong");
+      input();
+    }
+  });
+  if (arr.length != 5) {
+    console.log("Ban can nhap vao 5 so nguyen duong");
+    input();
+  } else {
+    console.log("Input Exam: ", arr);
+    console.log("Output");
+    console.log("Max Min Sum:", maxMinSum(arr));
+    console.log("Total Of Array:", countTotalOfArray(arr));
+    console.log("Max element:", findMinAndMaxInArray(arr).max);
+    console.log("Min element:", findMinAndMaxInArray(arr).min);
+    console.log("Even element:", findEvenInArray(arr));
+    console.log("Odd element:", findOddInArray(arr));
+    process.exit();
+  }
+});
