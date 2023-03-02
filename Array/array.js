@@ -49,29 +49,41 @@ function countTotalOfArray(arr) {
 }
 
 //===============================
+function hasDuplicates(array) {
+  return new Set(array).size !== array.length;
+}
 function input() {
   return process.stdin.read();
 }
-console.log("Moi ban nhap vao 5 so nguyen duong:");
+console.log("Enter 5 positive integers:");
 process.stdin.setEncoding("utf8");
 process.stdin.on("readable", function () {
   let inputValue = input();
+
   const arr = inputValue.split(" ").map((item) => parseInt(item));
-  if (arr.some((value) => value <= 0)) {
-    console.log("Khong duoc nhap vao so am va so 0");
-    input();
-  } else if (arr.length != 5) {
-    console.log("Khong du 5 so");
-    input();
-  } else {
-    console.log("Input Exam: ", arr);
-    console.log("Output");
-    console.log("Max Min Sum:", maxMinSum(arr));
-    console.log("Total Of Array:", countTotalOfArray(arr));
-    console.log("Max element:", findMinAndMaxInArray(arr).max);
-    console.log("Min element:", findMinAndMaxInArray(arr).min);
-    console.log("Even element:", findEvenInArray(arr));
-    console.log("Odd element:", findOddInArray(arr));
-    process.exit();
+  switch (true) {
+    case hasDuplicates(arr):
+      console.log("Duplicate Value");
+      input();
+      break;
+    case arr.some((value) => value <= 0 || isNaN(value)):
+      console.log("Only Positive Integers");
+      input();
+      break;
+    case arr.length != 5:
+      console.log("Only 5 integers");
+      input();
+      break;
+    default:
+      console.log("Input Exam: ", arr);
+      console.log("Output");
+      console.log("Max Min Sum:", maxMinSum(arr));
+      console.log("Total Of Array:", countTotalOfArray(arr));
+      console.log("Max element:", findMinAndMaxInArray(arr).max);
+      console.log("Min element:", findMinAndMaxInArray(arr).min);
+      console.log("Even element:", findEvenInArray(arr));
+      console.log("Odd element:", findOddInArray(arr));
+      process.exit();
+      break;
   }
 });
